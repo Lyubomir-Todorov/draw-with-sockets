@@ -1,0 +1,10 @@
+{
+  "name": "Draw with Sockets",
+  "description": "A multiplayer drawing game",
+  "repository": "https://github.com/Lyubomir-Todorov/draw-with-sockets",
+  "keywords": [
+    "game",
+    "multiplayer",
+  ],
+  "stack": "container"
+}
