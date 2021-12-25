@@ -1,27 +1,18 @@
-# AngularSockets
+# Draw with Sockets!
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.1.
+Draw with Sockets is a recreation of the web-based drawing game Skribbl.io. This app allowed me to learn Angular, and familiarize myself further with Nodejs and Socket.io.
 
-## Development server
+## Demo
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+https://draw-with-sockets.herokuapp.com/
 
-## Code scaffolding
+## Hosting your own instance
+By using Heroku, you can deploy a temporary container that runs Draw with Sockets. The container will not have any cost and automatically suspend as soon as it stops receiving traffic for a while.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Simply create an account at https://id.heroku.com/login and then click this link:
 
-## Build
+https://heroku.com/deploy?template=https://github.com/Lyubomir-Todorov/draw-with-sockets/
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## License
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+This project is available under the [MIT license](LICENSE)
