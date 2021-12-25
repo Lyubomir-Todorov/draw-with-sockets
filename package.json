@@ -1,13 +1,18 @@
 {
   "name": "angular-sockets",
+  "license": "MIT",
   "version": "0.0.0",
-  "proxy": "localhost:3000",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --host 0.0.0.0",
+    "start": "node server.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "heroku-postbuild": "ng build --prod"
+  },
+  "engines": {
+    "node": "14.15.4",
+    "npm": "6.14.10"
   },
   "private": true,
   "dependencies": {
@@ -40,7 +45,8 @@
     "rxjs": "~7.4.0",
     "socket.io-client": "^4.4.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.11.4"
+    "zone.js": "~0.11.4",
+    "typescript": "~4.5.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~13.1.1",

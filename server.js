@@ -12,9 +12,12 @@ const io = require('socket.io')(http, {
   }
 }).listen(server);
 
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/src/index.html');
+app.use(express.static(__dirname + '/dist/angular-sockets'))
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/dist/angular-sockets/index.html'));
 });
+
 
 let roomData = {};
 let words = [];
@@ -500,6 +503,6 @@ io.of("/").adapter.on("delete-room", (room) => {
   //console.log("Room data:", roomData ,"\n");
 });
 
-server.listen(3000, () => {
-  console.log('listening on port:3000');
+server.listen(process.env.PORT, () => {
+  console.log('listening on port:', process.env.PORT);
 });

@@ -15,7 +15,7 @@ import { SocketIoModule, SocketIoConfig } from "ngx-socket-io";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ToastrModule } from "ngx-toastr";
 
-const config: SocketIoConfig = { url: "http://localhost:3000", options: {transports: ['websocket'], autoConnect: false, reconnection: false} };
+const config: SocketIoConfig = { url: "https://draw-with-sockets.herokuapp.com/", options: {transports: ['websocket'], autoConnect: false, reconnection: false} };
 
 @NgModule({
   declarations: [
