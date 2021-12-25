@@ -1,0 +1,13 @@
+.chat-container {
+  overflow-y: scroll;
+  overscroll-behavior-y: contain;
+  scroll-snap-type: y proximity;
+}
+
+.chat:nth-child(odd) {
+  background-color: #eae9e9;
+}
+
+.chat:last-child {
+  scroll-snap-align: end;
+}

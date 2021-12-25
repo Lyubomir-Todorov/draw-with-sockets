@@ -1,0 +1,8 @@
+.palette {
+  height: 32px;
+  width: 32px;
+  background-color: currentColor;
+  border-radius: 50%;
+  border: black solid 2px;
+  display: inline-block;
+}

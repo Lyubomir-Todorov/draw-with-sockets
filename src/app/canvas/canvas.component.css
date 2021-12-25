@@ -1,0 +1,42 @@
+:root {
+  --brushSize: 1px;
+}
+
+canvas {
+  border: black 2px solid;
+}
+
+.brush-size {
+  height: var(--brushSize);
+  width: var(--brushSize);
+  background-color: currentColor;
+  border-radius: 50%;
+  border: black solid 2px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+
+.mat-white {
+  background-color: #ffffff;
+}
+
+.mat-black {
+  background-color: #000000;
+}
+
+.mat-red {
+  background-color: #ff0000;
+}
+
+.mat-blue {
+  background-color: #0f00ff;
+}
+
+.mat-green {
+  background-color: #13d225;
+}
+
+.mat-yellow {
+  background-color: #ffe600;
+}

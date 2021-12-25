@@ -27,7 +27,13 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "./node_modules/bulma/css/bulma.css",
+              "./node_modules/bulma-slider/dist/css/bulma-slider.min.css",
+              "./node_modules/bulma-checkradio/dist/css/bulma-checkradio.min.css",
+              "./node_modules/@creativebulma/bulma-tooltip/dist/bulma-tooltip.css",
+              "./node_modules/ngx-toastr/toastr.css",
+              "./node_modules/animate.css/animate.css",
+              "src/style.css"
             ],
             "scripts": []
           },
@@ -94,6 +100,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
