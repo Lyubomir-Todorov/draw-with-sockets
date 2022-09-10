@@ -1,0 +1,14 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="8" fxFlex="85" fxFill>
+    <span class="material-icons">
+      {{ iconToDisplay() }}
+    </span>
+    <p>{{ username }}</p>
+    <p>{{ points }}</p>
+  </div>
+  <div>
+    <button *ngIf="isKickable" (click)="userIsKicked()">
+      <mat-icon fontIcon="delete"></mat-icon>
+    </button>
+  </div>
+</div>

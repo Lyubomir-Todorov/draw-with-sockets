@@ -1,0 +1,113 @@
+<div class="has-background-white" style="width: 600px">
+  <div class="columns is-multiline mb-0 p-3">
+    <div class="column is-three-quarters">
+      <app-palette
+        color="#ffffff"
+        (click)="changeBrushColour('#ffffff')"
+      ></app-palette>
+      <app-palette
+        color="#aeaeae"
+        (click)="changeBrushColour('#aeaeae')"
+      ></app-palette>
+      <app-palette
+        color="#000000"
+        (click)="changeBrushColour('#000000')"
+      ></app-palette>
+      <app-palette
+        color="#ff0000"
+        (click)="changeBrushColour('#ff0000')"
+      ></app-palette>
+      <app-palette
+        color="#85490a"
+        (click)="changeBrushColour('#85490a')"
+      ></app-palette>
+      <app-palette
+        color="#ff9300"
+        (click)="changeBrushColour('#ff9300')"
+      ></app-palette>
+      <app-palette
+        color="#ffe600"
+        (click)="changeBrushColour('#ffe600')"
+      ></app-palette>
+      <app-palette
+        color="#13d225"
+        (click)="changeBrushColour('#13d225')"
+      ></app-palette>
+      <app-palette
+        color="#096613"
+        (click)="changeBrushColour('#096613')"
+      ></app-palette>
+      <app-palette
+        color="#299af6"
+        (click)="changeBrushColour('#299af6')"
+      ></app-palette>
+      <app-palette
+        color="#0f00ff"
+        (click)="changeBrushColour('#0f00ff')"
+      ></app-palette>
+      <app-palette
+        color="#fd345b"
+        (click)="changeBrushColour('#fd345b')"
+      ></app-palette>
+      <app-palette
+        color="#8b0be7"
+        (click)="changeBrushColour('#8b0be7')"
+      ></app-palette>
+    </div>
+
+    <div class="column">
+      <div class="field has-addons">
+        <p class="control">
+          <button
+            [class.is-success]="currentTool == 'brush'"
+            (click)="changeTool('brush')"
+            class="button is-success has-tooltip-arrow"
+            data-tooltip="Brush (B)"
+          >
+            <span class="icon is-small">
+            </span>
+          </button>
+        </p>
+        <p class="control">
+          <button
+            [class.is-success]="currentTool == 'eraser'"
+            (click)="changeTool('eraser')"
+            class="button is-success has-tooltip-arrow"
+            data-tooltip="Eraser (E)"
+          >
+            <span class="icon is-small">
+            </span>
+          </button>
+        </p>
+        <p class="control">
+          <button
+            class="button is-danger is-light has-tooltip-arrow"
+            (click)="onCanvasResetPress()"
+            data-tooltip="Clear canvas"
+          >
+            <span class="icon is-small">
+            </span>
+          </button>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-0 p-3">
+    <label for="brushSize" class="label">
+      Brush Size:
+      <span class="brush-size" #brushEl></span>
+    </label>
+    <input
+      id="brushSize"
+      [(ngModel)]="brush.size"
+      (change)="updateBrush(); broadcastBrushSize()"
+      class="mt-0 slider is-fullwidth is-circle is-large"
+      step="1"
+      [min]="brush.min"
+      [max]="brush.max"
+      [value]="brush.size"
+      type="range"
+    />
+  </div>
+</div>

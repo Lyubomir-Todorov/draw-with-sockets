@@ -1,0 +1,203 @@
+@use '@angular/material' as mat; 
+
+@include mat.core();
+
+$md-primary: (
+    50 : #e4eef4,
+    100 : #bdd5e4,
+    200 : #91bad2,
+    300 : #649ec0,
+    400 : #4389b3,
+    500 : #2274a5,
+    600 : #1e6c9d,
+    700 : #196193,
+    800 : #14578a,
+    900 : #0c4479,
+    A100 : #aad2ff,
+    A200 : #77b7ff,
+    A400 : #449cff,
+    A700 : #2a8eff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #ffffff,
+    )
+);
+
+$md-accent: (
+    50 : #feebe1,
+    100 : #fdceb3,
+    200 : #fbae81,
+    300 : #f98d4f,
+    400 : #f87429,
+    500 : #f75c03,
+    600 : #f65403,
+    700 : #f54a02,
+    800 : #f34102,
+    900 : #f13001,
+    A100 : #ffffff,
+    A200 : #ffe8e5,
+    A400 : #ffbcb2,
+    A700 : #ffa698,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$md-success: (
+    50 : #e0f9ed,
+    100 : #b3f0d1,
+    200 : #80e6b3,
+    300 : #4ddb94,
+    400 : #26d47d,
+    500 : #00cc66,
+    600 : #00c75e,
+    700 : #00c053,
+    800 : #00b949,
+    900 : #00ad38,
+    A100 : #d7ffe1,
+    A200 : #a4ffba,
+    A400 : #71ff94,
+    A700 : #58ff81,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$md-error: (
+    50 : #fae1ed,
+    100 : #f4b3d2,
+    200 : #ec81b4,
+    300 : #e44f95,
+    400 : #df297f,
+    500 : #d90368,
+    600 : #d50360,
+    700 : #cf0255,
+    800 : #ca024b,
+    900 : #c0013a,
+    A100 : #ffe9ee,
+    A200 : #ffb6c7,
+    A400 : #ff839f,
+    A700 : #ff698c,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$md-warn: (
+    50 : #fdf8e2,
+    100 : #fbedb7,
+    200 : #f8e287,
+    300 : #f5d657,
+    400 : #f3cd33,
+    500 : #f1c40f,
+    600 : #efbe0d,
+    700 : #edb60b,
+    800 : #ebaf08,
+    900 : #e7a204,
+    A100 : #ffffff,
+    A200 : #fff3da,
+    A400 : #ffe1a7,
+    A700 : #ffd98e,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$draw-with-sockets-primary: mat.define-palette($md-primary);
+$draw-with-sockets-accent: mat.define-palette($md-success);
+$draw-with-sockets-error: mat.define-palette($md-error);
+$draw-with-sockets-success: mat.define-palette($md-success);
+
+$draw-with-sockets-theme: mat.define-light-theme((
+  color: (
+    primary: $draw-with-sockets-primary,
+    accent: $draw-with-sockets-success,
+    warn: $draw-with-sockets-error,
+  ),
+));
+
+@include mat.all-component-themes($draw-with-sockets-theme);
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');
+html, body { height: 100%; }
+body { 
+  margin: 0; 
+  font-family: Roboto, "Helvetica Neue", sans-serif; 
+  background-color: #353A47;
+  background-image: url("../src/assets/Background.svg");
+  background-repeat: repeat;
+  background-size: 320px 225px;
+}
+
+button {
+  font-family: Inter, sans-serif !important;
+}

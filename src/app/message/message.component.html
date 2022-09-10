@@ -1,0 +1,7 @@
+<div #container class="h-full overflow-y-scroll">
+  <div *ngFor="let message of messages" class="bg-white even:bg-gray-200">
+    <p>
+      <b *ngIf="message[0]">{{ message[0] }}: </b>{{ message[1] }}
+    </p>
+  </div>
+</div>

@@ -1,0 +1,146 @@
+<app-modal
+  *ngIf="lobby.matchCountdown"
+  [title]="
+    client.drawing
+      ? 'Get Ready! You are going to draw:'
+      : 'You are guessing this round!'
+  "
+  [isDrawing]="clientIsDrawing()"
+  [isRoundSummary]="false"
+  [subtitle]="lobby.currentDrawer.username + ' will be drawing'"
+  [word]="lobby.word"
+  [countdown]="lobby.matchStartingCountdown"
+>
+</app-modal>
+
+<app-modal
+  *ngIf="lobby.roundOver"
+  title="Round Over!"
+  [isRoundSummary]="true"
+  [subtitle]="lobby.roundOverReason"
+  [word]="lobby.word"
+  [summary]="lobby.roundSummary[0]"
+>
+</app-modal>
+
+<div
+  fxLayout="row"
+  fxLayout.lt-sm="column"
+  fxLayoutAlign="space-between stretch"
+  fxFill
+  fxLayoutGap.xs="16"
+  fxLayoutGap="32"
+>
+  <mat-card fxFlex="20">
+    <mat-card-content
+      class="h-full"
+      fxLayout="column"
+      fxLayoutAlign="space-between stretch"
+      fxLayoutGap="10"
+    >
+      <div class="overflow-y-scroll h-full" fxLayout="column">
+        <div *ngFor="let message of lobby.userList">
+          <app-user
+            [username]="message['username']"
+            [points]="showUserScore(message)"
+            [isHost]="userIsHost(message)"
+            [isSelf]="userIsMe(message)"
+            [isDrawing]="userIsDrawing(message)"
+            [isCorrectGuess]="userHasCorrectlyGuessed(message)"
+            [isKickable]="userCanKick(message)"
+            (onKick)="kickUser(message['userID'])"
+          ></app-user>
+        </div>
+      </div>
+
+      <div
+        class="sm:space-x-0 sm:space-y-2 space-x-1"
+        fxLayout="row"
+        fxLayout.gt-xs="column"
+        fxLayoutAlign="space-between stretch"
+      >
+        <button
+          class="w-full"
+          *ngIf="clientIsHost() && !matchStarted()"
+          (click)="startMatch()"
+          [disabled]="!canStartMatch()"
+          type="button"
+          color="accent"
+          mat-raised-button
+        >
+          Start
+        </button>
+        <button
+          class="w-full"
+          (click)="revealRoomCode()"
+          type="button"
+          color="primary"
+          mat-stroked-button
+        >
+          {{ lobby.roomCodeIsVisible ? inputRoom : "Room code" }}
+        </button>
+        <button
+          class="w-full"
+          (click)="disconnect()"
+          type="button"
+          color="warn"
+          mat-raised-button
+        >
+          Leave
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <div
+    fxLayout="column"
+    fxLayoutAlign="space-between center"
+    fxill
+    fxFlex
+    fxLayoutGap="8"
+  >
+    <mat-card *ngIf="matchStarted()" fxFlex="15" class="w-full">
+      <div fxLayout="column" fxLayoutAlign="space-between stretch">
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <p class="text-2xl whitespace-pre">{{lobby.word}}</p>
+            <p class="text-2xl">{{(lobby.matchTime/100).toFixed(0)}}</p>
+          </div>
+
+          <div>
+            <mat-progress-bar color="primary" [value]="lobby.matchTime/100"></mat-progress-bar>
+          </div>
+      </div>
+    </mat-card>
+
+    <mat-card fxFlex class="w-full">
+      <app-canvas #canvas oncontextmenu="return false;"></app-canvas>
+    </mat-card>
+  </div>
+
+  <mat-card fxFlex="30">
+    <div fxLayout="column" fxFill fxLayoutAlign="space-between stretch">
+      <div
+        [fxFlex.gt-xs]="clientIsDrawing() ? '100' : '90'"
+        [fxFlex.xs]="clientIsDrawing() ? '100' : '30'"
+        [ngClass]="{ 'h-full': clientIsDrawing() }"
+      >
+        <app-message [messages]="lobby.messageList"></app-message>
+      </div>
+
+      <div *ngIf="!clientIsDrawing()">
+        <mat-form-field class="w-full" appearance="outline">
+          <input
+            [(ngModel)]="newMessage"
+            (keyup.enter)="sendMessage()"
+            matInput
+            autocomplete="off"
+            placeholder="Message"
+          />
+          <button mat-icon-button matSuffix (click)="sendMessage()">
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-card>
+</div>

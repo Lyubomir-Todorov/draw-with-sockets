@@ -1,0 +1,73 @@
+<div class="h-full" fxLayout="column" fxLayoutAlign="space-between center">
+  <canvas
+    #canvas
+    (mousewheel)="changeBrushSize($event)"
+    (mousemove)="mouseMove($event)"
+    (mousedown)="mouseClick($event)"
+    (mouseup)="mouseRelease()"
+    (mouseleave)="mouseRelease()"
+    (touchstart)="mouseClick($event)"
+    (touchmove)="mouseMove($event)"
+    (touchend)="mouseRelease()"
+    style="width: 100%; display: block"
+  ></canvas>
+  <div
+    *ngIf="!isDrawing"
+    class="w-full"
+    fxLayout.gt-md="column"
+    fxLayoutAlign.gt-md="space-between stretch"
+    fxLayoutGap="4"
+  >
+    <div fxLayout="column" fxLayout.gt-md="row" fxLayoutAlign.gt-md="space-between start" fxLayoutGap="8">
+      <div fxLayout="row wrap" fxLayoutGap="4">
+        <div *ngFor="let color of palette">
+          <div
+            class="rounded-full mb-1 border-black border-solid cursor-pointer"
+            [style]="{ 'background-color': color }"
+            [class.border-2]="getBrushColor() !== color"
+            [class.border-4]="getBrushColor() === color"
+            (click)="changeBrushColour(color)"
+            style="width: 32px; height: 32px"
+          ></div>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="4">
+        <button (click)="changeTool('brush')" mat-raised-button color="primary">
+          <mat-icon>brush</mat-icon>
+          Draw
+        </button>
+
+        <button
+          (click)="changeTool('eraser')"
+          mat-raised-button
+          color="primary"
+        >
+          <mat-icon>backspace</mat-icon>
+          Erase
+        </button>
+
+        <button (click)="onCanvasResetPress()" mat-raised-button color="warn">
+          <mat-icon>delete</mat-icon>
+          Clear
+        </button>
+      </div>
+    </div>
+
+    <div class="w-full sm:pt-0 pt-5">
+      <label>Brush Size</label>
+      <mat-slider
+        class="w-full text-white"
+        id="brushSize"
+        [(ngModel)]="brush.size"
+        (change)="broadcastBrushSize()"
+        [min]="brush.min"
+        [max]="brush.max"
+        [value]="brush.size"
+        step="1"
+        tickInterval="auto"
+        thumbLabel 
+      ></mat-slider>
+    </div>
+  </div>
+</div>

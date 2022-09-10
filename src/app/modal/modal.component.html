@@ -1,0 +1,38 @@
+<div
+  class="opacity-75 bg-black w-screen h-screen absolute flex z-50 text-white"
+>
+  <div class="sm:w-1/2 w-3/4 h-1/2 m-auto my-auto space-y-20 opacity-100">
+    <div *ngIf="isRoundSummary; then end; else start"></div>
+
+    <ng-template #start>
+      <div class="opacity-100" *ngIf="isDrawing; then draw; else guess"></div>
+      <ng-template #draw>
+        <p class="text-2xl">{{ title }}</p>
+        <p class="text-7xl font-black">{{ word }}</p>
+        <p class="text-7xl font-black">{{ countdown }}</p>
+      </ng-template>
+
+      <ng-template class="space-y-20" #guess>
+        <p class="text-2xl">
+          {{ title }}
+        </p>
+        <p class="text-xl">
+          {{ subtitle }}
+        </p>
+        <p class="text-7xl font-black">{{ countdown }}</p>
+      </ng-template>
+    </ng-template>
+
+    <ng-template #end>
+      <div class="opacity-100">
+        <p class="text-7xl font-black">
+          {{ title }}
+        </p>
+        <p class="text-xl py-5">{{ subtitle }}</p>
+        <div class="space-y-2" *ngFor="let user of summary">
+          <p class="text-2xl">{{ user["username"] }} - {{ user["score"] }}</p>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>

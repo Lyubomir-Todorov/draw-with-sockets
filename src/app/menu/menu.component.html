@@ -1,0 +1,141 @@
+<div fxLayout="column" class="mx-auto py-16 sm:w-1/2 w-3/4" fxLayoutGap="16">
+  <img src="../assets/Logo.svg" width="64" />
+  <p class="text-7xl text-white font-black">Draw with Sockets!</p>
+  <mat-card>
+    <mat-card-content>
+      <div
+        fxLayout="column"
+        fxLayoutAlign="space-between stretch"
+        fxLayoutGap="16"
+      >
+        <div fxFlex="85">
+          <mat-form-field
+            hintLabel="Max 16 characters"
+            appearance="outline"
+            class="w-1/2 sm:w-2/3 pr-5"
+          >
+            <mat-label>Username</mat-label>
+            <input
+              autocomplete="off"
+              matInput
+              #username
+              maxlength="16"
+              [(ngModel)]="inputUsername"
+            />
+            <mat-hint align="end">{{ username.value.length || 0 }}/16</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="w-1/2 sm:w-1/3">
+            <mat-label>Room code</mat-label>
+            <input
+              autocomplete="off"
+              matInput
+              #roomCode
+              maxlength="4"
+              (input)="inputRoom = inputRoom.toUpperCase()"
+              (keyup.enter)="joinLobbyWithHotkey()"
+              [(ngModel)]="inputRoom"
+            />
+            <mat-hint align="end">{{ roomCode.value.length || 0 }}/4</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <div fxFlex class="space-x-3">
+          <button
+            type="button"
+            color="primary"
+            mat-stroked-button
+            [disabled]="!inputRoom"
+            (click)="joinLobby()"
+          >
+            Join
+          </button>
+
+          <button
+            type="button"
+            color="primary"
+            mat-raised-button
+            (click)="connect()"
+          >
+            Create room
+          </button>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-title class="underline">Made by Lyubomir Todorov</mat-card-title>
+    <mat-card-content class="space-y-3">
+      <p>
+        <b>Draw with Sockets!</b> is a full-stack project made with Angular and
+        Node.js. Lobby and match functionality is done using Socket.io
+      </p>
+
+      <div>
+        <b>The app's source code is available under the MIT licence.</b>
+      </div>
+
+      <div>
+        <a
+          class="text-blue-600"
+          href="https://www.github.com/Lyubomir-Todorov/draw-with-sockets"
+          target="_blank"
+          >View the source code at Github</a
+        >
+      </div>
+
+      <div>
+        <a
+          class="text-blue-600"
+          href="https://lyubomirtodorov.ca"
+          target="_blank"
+          >View other projects on my personal website</a
+        >
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-title class="underline">How do I play?</mat-card-title>
+    <mat-card-content class="space-y-3">
+      <p>
+        <b>Draw with Sockets!</b> is a Pictionary type game, where one person is
+        tasked with drawing a randomly chosen word, and the rest of the lobby
+        tries to guess what it is.
+      </p>
+
+      <p>
+        Points are awarded to those who correctly guess the word, and how
+        quickly they get it.
+      </p>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title class="underline"> Changelog </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="space-y-3">
+      <li>App has been moved away from Heroku. No more free lunch :(</li>
+      <li>Socket Subscriptions are now properly handled and disposed of</li>
+      <li>
+        More components have been made, this menu and game screen have been
+        seperated and should fix some previous issues
+      </li>
+      <li>
+        Project has switched over to Material & Tailwind. This has allowed for a
+        better overall interface and more use of space for desktop
+      </li>
+      <li>Players can now be kicked</li>
+      <li>
+        Cleanup of duplicate words and regional spellings from the word bank
+      </li>
+      <li>Messages in chat now properly overflow</li>
+      <li>
+        Fixed an issue where trying to join an invalid room displayed 2 error
+        toasts
+      </li>
+    </div>
+  </mat-expansion-panel>
+</div>
