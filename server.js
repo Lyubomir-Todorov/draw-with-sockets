@@ -8,7 +8,8 @@ const { customAlphabet } = require("nanoid");
 const { generateSlug } = require("random-word-slugs");
 const io = require("socket.io")(http, {
   cors: {
-    origin: "*",
+    origin: "https://draw-with-sockets.netlify.app",
+    methods: ["GET", "POST"],
   },
 }).listen(server);
 
