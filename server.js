@@ -22,7 +22,7 @@ app.get("/*", (res) => {
 let roomData = {};
 let words = [];
 
-fs.readFile("words.txt", "utf8", (err, data) => {
+fs.readFile(path.resolve( __dirname, "./words.txt" ), "utf8", (err, data) => {
   if (err) {
     console.error(err);
     return;
