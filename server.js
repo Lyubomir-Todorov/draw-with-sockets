@@ -1,12 +1,24 @@
 const express = require("express");
 const path = require("path");
 const app = express();
-const http = require("http");
-const server = http.createServer(app);
+const https = require("https");
 const fs = require("fs");
+
+var options;
+
+try {
+  options = {
+    key: fs.readFileSync('/etc/letsencrypt/live/mossington.ca/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/mossington.ca/fullchain.pem')
+  };
+} catch { console.log("Error creating options") }
+
+
+const server = https.createServer(options, app);
+
 const { customAlphabet } = require("nanoid");
 const { generateSlug } = require("random-word-slugs");
-const io = require("socket.io")(http, {
+const io = require("socket.io")(https, {
   cors: {
     origin: "https://draw-with-sockets.netlify.app",
     methods: ["GET", "POST"],
