@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  serverAddress: "http://localhost:3000"
+  serverAddress: "https://draw-with-sockets.onrender.com"
 };
