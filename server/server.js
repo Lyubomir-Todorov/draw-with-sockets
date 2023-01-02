@@ -1,28 +1,22 @@
 const express = require("express");
 const path = require("path");
 const app = express();
-const https = require("https");
+const https = require("http");
 const fs = require("fs");
 
+const dotenv = require('dotenv');
+dotenv.config();
+
 var options;
-
-try {
-  options = {
-    key: fs.readFileSync('/etc/letsencrypt/live/mossington.ca/privkey.pem'),
-    cert: fs.readFileSync('/etc/letsencrypt/live/mossington.ca/fullchain.pem')
-  };
-} catch { console.log("Error creating options") }
-
-
 const server = https.createServer(options, app);
 
 const { customAlphabet } = require("nanoid");
 const { generateSlug } = require("random-word-slugs");
 const io = require("socket.io")(https, {
-  cors: {
-    origin: "https://draw-with-sockets.netlify.app",
-    methods: ["GET", "POST"],
-  },
+  // cors: {
+  //   origin: process.env.domain,
+  //   methods: ["GET", "POST"],
+  // },
 }).listen(server);
 
 app.use(express.static(__dirname + "/dist/angular-sockets"));
@@ -649,6 +643,7 @@ server.listen(process.env.PORT, () => {
 });
 */
 
-server.listen(3000, () => {
-  console.log("listening on port:", 3000);
+
+server.listen(process.env.port, () => {
+  console.log("listening on port:", process.env.port);
 });
