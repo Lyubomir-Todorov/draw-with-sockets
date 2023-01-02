@@ -1,29 +1,18 @@
 const express = require("express");
 const path = require("path");
 const app = express();
-const https = require("http");
+const http = require("http");
 const fs = require("fs");
 
 const dotenv = require('dotenv');
 dotenv.config();
 
 var options;
-const server = https.createServer(options, app);
+const server = http.createServer(options, app);
 
 const { customAlphabet } = require("nanoid");
 const { generateSlug } = require("random-word-slugs");
-const io = require("socket.io")(https, {
-  // cors: {
-  //   origin: process.env.domain,
-  //   methods: ["GET", "POST"],
-  // },
-}).listen(server);
-
-app.use(express.static(__dirname + "/dist/angular-sockets"));
-
-app.get("/*", (res) => {
-  res.sendFile(path.join(__dirname + "/dist/angular-sockets/index.html"));
-});
+const io = require("socket.io")(http, {}).listen(server);
 
 let roomData = {};
 let words = [];
